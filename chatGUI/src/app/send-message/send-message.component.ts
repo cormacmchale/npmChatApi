@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {letterCount} from 'lettercountcormacmchale';
-declare var letterCount: any;
+import {test} from 'cormacmchaleaddnumber/lib';
+//JavaScript Package testing
+//import {letterCount} from 'lettercountcormacmchale';
+//declare var letterCount: any;
 
 @Component({
   selector: 'app-send-message',
@@ -13,14 +15,13 @@ export class SendMessageComponent implements OnInit {
   //private t:Timeline
   ngOnInit()
   {
-
   }
-
   send(message:string)
   {
+    let x:number = test(5,6);
     //letterCount.letterCount(message)
     //let x  =  this.func.letterCount(message);
-    //alert(x);
+    alert(x);
   }
 
 }
