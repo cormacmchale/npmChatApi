@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
+//import * as Timeline from 'lettercountcormacmchale';
 import { AppComponent } from './app.component';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { DisplayMessageComponent } from './display-message/display-message.component';
