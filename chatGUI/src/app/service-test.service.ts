@@ -12,7 +12,7 @@ export class ServiceTestService {
 
   sendWords()
   {
-   return this.hype.gethello();  
+   return this.hype.gethello()+" "+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
   }
 
 }
