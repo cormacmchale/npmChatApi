@@ -1,0 +1,17 @@
+{
+  "name": "objectmethodscormacmchale",
+  "version": "1.0.0",
+  "description": "Just returns some strings from methods",
+  "main": "lib/firstObject.js",
+  "types": "lib/firstObject.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": ["useless"],
+  "author": "cormacmchale",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
+}
