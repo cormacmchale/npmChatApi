@@ -28,6 +28,7 @@ export class SendMessageComponent implements OnInit {
   {
     //this.x = new returnWords("fight");
     alert(this.hope.sendWords());
+    this.hope.makeOtherRequest(message);
     //letterCount.letterCount(message)
     //let x = this.func.letterCount(message);
   }

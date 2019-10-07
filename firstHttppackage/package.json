@@ -1,0 +1,17 @@
+{
+  "name": "firsthttppackage",
+  "version": "1.0.0",
+  "description": "makes a get request",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build" : "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["http","GET"],
+  "author": "cormacmchale",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.6.3"
+  }
+}
