@@ -16,9 +16,10 @@ var httpserviceprovider = /** @class */ (function () {
         xhr.send();
     };
     //second method
-    httpserviceprovider.prototype.testRequest = function () {
+    httpserviceprovider.prototype.testRequest = function (send) {
+        var info = JSON.stringify({ info: send });
         var xhr = new XMLHttpRequest();
-        xhr.open('Get', 'https://www.google.com');
+        xhr.open('Get', 'https://127.0.0.1:80/');
         xhr.onload = function () {
             var data = JSON.parse(xhr.response);
             console.log(data);
@@ -26,12 +27,11 @@ var httpserviceprovider = /** @class */ (function () {
         };
         xhr.send();
     };
-    //please god
     httpserviceprovider.prototype.sendPost = function (method, url, send) {
-        //should return a 404?
         var info = JSON.stringify({ info: send });
         var xhr = new XMLHttpRequest();
-        xhr.open(method, url);
+        xhr.open(method, url, true);
+        xhr.setRequestHeader('Content-type', 'JSON');
         xhr.onload = function () {
             var data = JSON.parse(xhr.response);
             console.log(data);

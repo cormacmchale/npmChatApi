@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { returnWords } from 'objectmethodscormacmchale';
-import { httpserviceprovider } from 'secondhttppackage';
+import { httpserviceprovider } from 'newestsecondhttppackage';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +17,9 @@ export class ServiceTestService {
    return this.hype.gethello()+" "+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
   }
 
-  makeRequest()
+  makeRequest(info:string)
   {
-    this.test.testRequest();
+    this.test.testRequest(info);
   }
   makeOtherRequest(name:string)
   {
