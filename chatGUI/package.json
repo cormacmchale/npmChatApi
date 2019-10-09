@@ -22,10 +22,10 @@
     "@angular/router": "^6.1.0",
     "core-js": "^2.5.4",
     "cormacmchaleaddnumber": "^1.0.0",
-    "firsthttppackage": "^1.0.0",
     "lettercountcormacmchale": "^1.0.0",
     "objectmethodscormacmchale": "^1.0.0",
     "rxjs": "~6.2.0",
+    "secondhttppackage": "^1.0.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

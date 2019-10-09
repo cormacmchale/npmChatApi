@@ -1,5 +1,5 @@
 {
-  "name": "firsthttppackage",
+  "name": "secondhttppackage",
   "version": "1.0.0",
   "description": "makes a get request",
   "main": "lib/index.js",

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { returnWords } from 'objectmethodscormacmchale';
-import { httpserviceprovider } from 'firsthttppackage';
+import { httpserviceprovider } from 'secondhttppackage';
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +24,10 @@ export class ServiceTestService {
   makeOtherRequest(name:string)
   {
     this.test.makeRequest(name);
+  }
+  sendthisInfo(method:string,url:string,info:string)
+  {
+    this.test.sendPost(method,url,info)
   }
 
 }
