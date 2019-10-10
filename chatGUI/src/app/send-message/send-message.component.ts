@@ -30,6 +30,8 @@ export class SendMessageComponent implements OnInit {
     alert(this.hope.sendWords());
     //this.hope.sendthisInfo("POST","127.0.0.1",message);
     this.hope.makeRequest("hello");
+    //the next big thing
+    this.hope.makeNewestRequest();
   }
 
 }
