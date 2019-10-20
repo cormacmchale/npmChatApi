@@ -15,7 +15,7 @@ export class ServiceTestService {
 
   sendWords()
   {
-   return this.hype.gethello()+" "+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
+    return this.hype.gethello()+"\n"+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
   }
 
   makeRequest(info:string)

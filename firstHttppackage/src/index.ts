@@ -1,4 +1,4 @@
-export class httpserviceprovider
+export class httpserviceprovidertaketwo
 {   
       makeRequest(userName: string)
       {
@@ -32,7 +32,6 @@ export class httpserviceprovider
       sendPost(method: string, url:string, send:string)
       {
         const info:any = JSON.stringify({info:send});
-
         const xhr = new XMLHttpRequest()
         xhr.open(method,url, true);
         xhr.setRequestHeader('Content-type','JSON');

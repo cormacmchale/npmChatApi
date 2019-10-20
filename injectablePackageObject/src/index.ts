@@ -21,5 +21,5 @@ export class HttpHandler
 }
 container.bind<HttpHandler>(HttpHandler).toSelf();
 export default container;
-
 export const newObject:HttpHandler = container.resolve<HttpHandler>(HttpHandler);
+
