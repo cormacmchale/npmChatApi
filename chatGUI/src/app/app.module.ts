@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { DisplayMessageComponent } from './display-message/display-message.component';
 import { ServiceTestService } from './service-test.service';
+import { HttpHandler } from 'injectablepackageobjectagain/lib';
+import { httpserviceprovider } from 'newestsecondhttppackage';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { ServiceTestService } from './service-test.service';
       {path:'recieve', component: DisplayMessageComponent}
     ])
   ],
-  providers: [ServiceTestService],
+  providers: [ServiceTestService, HttpHandler, httpserviceprovider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
