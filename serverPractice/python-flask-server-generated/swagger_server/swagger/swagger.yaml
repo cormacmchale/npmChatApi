@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: ArtistAPI2
+  description: ArtistAPI2
+  version: "1.0"
+servers:
+- url: https://virtserver.swaggerhub.com/cormacmchale3/ArtistAPI2/1.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /artists:
+    get:
+      description: Returns a list of artists
+      operationId: artists_get
+      responses:
+        200:
+          description: Successfully returned artists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artist'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+    post:
+      description: Add an artist
+      operationId: artists_post
+      responses:
+        200:
+          description: Successfully added artist
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Artist'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.default_controller
+components:
+  schemas:
+    Artist:
+      required:
+      - artist_id
+      type: object
+      properties:
+        artist_name:
+          type: string
+        artist_genre:
+          type: string
+        albums_recorded:
+          type: integer
+        username:
+          type: string
+      example:
+        artist_name: artist_name
+        albums_recorded: 0
+        artist_genre: artist_genre
+        username: username
+
