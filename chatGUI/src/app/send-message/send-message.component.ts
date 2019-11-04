@@ -26,12 +26,14 @@ export class SendMessageComponent implements OnInit {
 
   send(message:string)
   {
-    //this.x = new returnWords("fight");
-    //alert(this.hope.sendWords());
-    this.hope.sendthisInfo("POST","127.0.0.1",message);
-    this.hope.makeRequest("hello");
-    //the next big thing
-    this.hope.makeNewestRequest();
+        //testing
+        //this.x = new returnWords("fight");
+        //alert(this.hope.sendWords());
+        //this.hope.sendthisInfo("POST","127.0.0.1",message);
+        //this.hope.makeRequest("hello");
+        //the next big thing
+        //this.hope.makeNewestRequest();
+        this.hope.connectToWebsocket();
   }
 
 }
