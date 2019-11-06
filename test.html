@@ -39,10 +39,11 @@ support@yourcompany.com</a>.
 <Script>
 function connect() {
     console.log("in function");
-    var socket = new SockJS('https://127.0.0.1/mywebserver');
+    console.log("new");
+    var socket = new SockJS('http://127.0.0.1:50000/mywebserver');
 	socket.onopen = function() {
 	console.log('opening...')
-	ws.send('hello server')
+	//socket.send('hello server')
 	}
 	socket.onmessage = function(e) {
 	console.log(e.data)
