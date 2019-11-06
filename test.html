@@ -8,46 +8,55 @@
 
 <BODY BGCOLOR="FFFFFF">
 
-<CENTER><IMG SRC="clouds.jpg" ALIGN="BOTTOM"> </CENTER>
-
-<HR>
-
-<a href="http://somegreatsite.com">Link Name</a>
-
-is a link to another nifty site
-
-<H1>This is a Header</H1>
-
-<H2>This is a Medium Header</H2>
-
-Send me mail at <a href="mailto:support@yourcompany.com">
-
-support@yourcompany.com</a>.
-
-<P> This is a new paragraph!
-
-<P> <B>This is a new paragraph!</B>
-
-<BR> <B><I>This is a new sentence without a paragraph break, in bold italics.</I></B>
-
 <button onClick="connect()">Connect</button>
 
-<HR>
+<h1>Type into the text box and view console to chat</h1>
 
+Message: <input type="text" id="chat"></input>
+<button onClick="sendMessage()">Send</button>
+<br>
+<br>
+<button onClick="close()">Close connection</button>
 </BODY>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <Script>
-function connect() {
-    console.log("in function");
-    console.log("new");
-    var socket = new SockJS('http://127.0.0.1:50000/mywebserver');
-	socket.onopen = function() {
-	console.log('opening...')
+var ws;
+function connect() 
+{
+    	console.log("in function");
+	ws = new WebSocket('ws://localhost:50000/name');
+	//web socket utils
+	ws.onmessage = function(data)
+	{
+	//show the data
+	console.log(data.data);
+	}
+	ws.onopen = function()
+	{
+	console.log("connected")
+	}
+}
+function sendMessage()
+{
+	var message = document.getElementById("chat").value;
+	//console.log(message);
+	ws.send(message);
+}
+function close()
+{
+        ws.close();
+}
+
+
+    //console.log("new");
+    //var socket = new SockJS('http://127.0.0.1:50000/mywebserver');
+	//socket.onopen = function() {
+	//console.log('opening...')
 	//socket.send('hello server')
-	}
-	socket.onmessage = function(e) {
-	console.log(e.data)
-	}
+	//}
+	//socket.onmessage = function(e) {
+	//console.log(e.data)
+	//}
     //stompClient = Stomp.over(socket);
     //stompClient.connect({}, function (frame) {
     //    setConnected(true);
@@ -56,7 +65,6 @@ function connect() {
     //        showGreeting(JSON.parse(greeting.body).content);
     //    });
     // });
-}
 </Script>
 
 </HTML>

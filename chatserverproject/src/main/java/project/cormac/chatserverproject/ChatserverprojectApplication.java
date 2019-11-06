@@ -1,14 +1,12 @@
-
-package com.project.webserver.com.project.webserver;
+package project.cormac.chatserverproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebserverApplication {
+public class ChatserverprojectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebserverApplication.class, args);
+		SpringApplication.run(ChatserverprojectApplication.class, args);
 	}
-
 }
