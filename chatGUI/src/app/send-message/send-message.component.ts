@@ -5,6 +5,8 @@ import {test} from 'cormacmchaleaddnumber/lib';
   //declare var letterCount:any;
 //need to import in service
 import { ServiceTestService } from '../service-test.service';
+import { Observable, Subject } from 'rxjs';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 //this is now in service
 //import { returnWords } from 'objectmethodscormacmchale';
@@ -16,13 +18,19 @@ import { ServiceTestService } from '../service-test.service';
 })
 export class SendMessageComponent implements OnInit {
   
-  constructor(private hope: ServiceTestService) { }
+  public messages: Subject<MessageEvent>;
+  //create client here
+  private webSocketEndPoint: string = 'ws://127.0.0.1:50000/name';
 
-  //private t:Timeline
-  //x:returnWords
+  constructor(private hope: ServiceTestService) {
+
+   }
 
   ngOnInit()
-  {}
+  {
+     this.messages = this.hope.connect(this.webSocketEndPoint)
+     console.log(this.messages.subscribe)
+  }
 
   send(message:string)
   {
@@ -33,7 +41,7 @@ export class SendMessageComponent implements OnInit {
         //this.hope.makeRequest("hello");
         //the next big thing
         //this.hope.makeNewestRequest();
-        this.hope.connectToWebsocket();
+        //this.hope.sendMessage(message);
   }
 
 }

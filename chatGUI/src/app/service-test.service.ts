@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { returnWords } from 'objectmethodscormacmchale';
 import { httpserviceprovider } from 'newestsecondhttppackage';
 import { HttpHandler } from 'injectablepackageobjectagain/lib';
-import * as SockJS from 'sockjs-client';
-import { print } from 'util';
+import * as Rx from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,32 +13,35 @@ export class ServiceTestService {
   constructor(private testOne:HttpHandler, private test:httpserviceprovider) { }
 
   hype:returnWords = new returnWords("hope")
-
-  //create client here
-  webSocketEndPoint: string = 'ws://10.0.2.15:8080/mywebserver';
-  topic: string = "/topic/greetings";
   
-  connect() 
-  {
-      console.log("Initialize WebSocket Connection");
-      var socket = new WebSocket(this.webSocketEndPoint);
-      socket.onopen = function(event)
-      {
-       print("Connected");
-      };
-      socket.onerror = function(error) {
-        console.log('My app ' + error.type);
-      };
-  };
+  //this is the message event object
+  private subject: Rx.Subject<MessageEvent>
+  public ws: WebSocket;
 
-   connectToWebsocket()
-   {
-      this.connect();
-   }
-   sendMessage()   
-   {
-     
-   }
+  public connect(webSocketEndPoint): Rx.Subject<MessageEvent> 
+  {
+    this.ws = new WebSocket(webSocketEndPoint);
+
+    let reciever = Rx.Observable.create(
+      (obs:Rx.Observer<MessageEvent>)=>
+      {
+        this.ws.onmessage = obs.next.bind(obs); 
+      }
+    )
+    let sender = 
+    {
+      next:(data)=>
+      {
+        this.ws.send(data)
+      }
+    }
+    return Rx.Subject.create(sender, reciever);
+  };
+  
+  send()
+  {
+    this.ws.send("hello");
+  }
 
 
 
