@@ -3,6 +3,10 @@ import { returnWords } from 'objectmethodscormacmchale';
 import { httpserviceprovider } from 'newestsecondhttppackage';
 import { HttpHandler } from 'injectablepackageobjectagain/lib';
 import * as Rx from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { NodeLogger } from '@angular/core/src/view';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -15,64 +19,25 @@ export class ServiceTestService {
   hype:returnWords = new returnWords("hope")
   
   //this is the message event object
-  private subject: Rx.Subject<MessageEvent>
-  public ws: WebSocket;
-
-  public connect(webSocketEndPoint): Rx.Subject<MessageEvent> 
+  //private subject: Rx.Subject<MessageEvent>
+  private ws: WebSocket;
+  //create client here
+  public conversation:string = "";
+  public webSocketEndPoint: string = 'ws://127.0.0.1:50000/name';
+  public connect() //Rx.Subject<MessageEvent> 
   {
-    this.ws = new WebSocket(webSocketEndPoint);
-
-    let reciever = Rx.Observable.create(
-      (obs:Rx.Observer<MessageEvent>)=>
-      {
-        this.ws.onmessage = obs.next.bind(obs); 
-      }
-    )
-    let sender = 
-    {
-      next:(data)=>
-      {
-        this.ws.send(data)
-      }
-    }
-    return Rx.Subject.create(sender, reciever);
-  };
-  
-  send()
-  {
-    this.ws.send("hello");
+    this.ws = new WebSocket(this.webSocketEndPoint);
+    this.ws.addEventListener("open", (event: Event) => {
+    console.error("Connection");
+    });
+    this.ws.addEventListener("message", (event: MessageEvent) => {
+      //this.help.
+      this.conversation+="\n"+event.data;
+      //console.log(this.conversation);
+    });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  sendWords()
+  sendMessage(message:string)
   {
-    return this.hype.gethello()+"\n"+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
+    this.ws.send(message);
   }
-  makeRequest(info:string)
-  {
-    this.test.testRequest(info);
-  }
-  makeOtherRequest(name:string)
-  {
-    this.test.makeRequest(name);
-  }
-  sendthisInfo(method:string,url:string,info:string)
-  {
-    this.test.sendPost(method,url,info)
-  }
-  makeNewestRequest()
-  {
-    this.testOne.testRequest("hello");
-  }
-
 }

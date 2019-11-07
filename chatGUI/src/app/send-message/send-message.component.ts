@@ -18,30 +18,22 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class SendMessageComponent implements OnInit {
   
-  public messages: Subject<MessageEvent>;
-  //create client here
-  private webSocketEndPoint: string = 'ws://127.0.0.1:50000/name';
+  public conversation: string;
+  public formatConversation;
 
   constructor(private hope: ServiceTestService) {
 
-   }
+  }
 
   ngOnInit()
   {
-     this.messages = this.hope.connect(this.webSocketEndPoint)
-     console.log(this.messages.subscribe)
+     this.hope.connect()
   }
 
   send(message:string)
   {
-        //testing
-        //this.x = new returnWords("fight");
-        //alert(this.hope.sendWords());
-        //this.hope.sendthisInfo("POST","127.0.0.1",message);
-        //this.hope.makeRequest("hello");
-        //the next big thing
-        //this.hope.makeNewestRequest();
-        //this.hope.sendMessage(message);
+    this.hope.sendMessage(message);
+    this.conversation = this.hope.conversation; 
   }
 
 }
