@@ -20,24 +20,28 @@ export class ServiceTestService {
   
   //this is the message event object
   //private subject: Rx.Subject<MessageEvent>
-  private ws: WebSocket;
+  public ws: WebSocket;
   //create client here
   public conversation:string = "";
+  private s:string;
   public webSocketEndPoint: string = 'ws://127.0.0.1:50000/name';
   public connect() //Rx.Subject<MessageEvent> 
   {
     this.ws = new WebSocket(this.webSocketEndPoint);
     this.ws.addEventListener("open", (event: Event) => {
-    console.error("Connection");
+      console.log("Connection");
     });
     this.ws.addEventListener("message", (event: MessageEvent) => {
-      //this.help.
-      this.conversation+="\n"+event.data;
-      //console.log(this.conversation);
+       this.addData(event.data);
     });
   }
   sendMessage(message:string)
   {
     this.ws.send(message);
   }
+  addData(data:string)
+  {
+    this.conversation += data;
+  }
+
 }

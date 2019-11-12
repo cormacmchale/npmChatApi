@@ -6,7 +6,6 @@ import {test} from 'cormacmchaleaddnumber/lib';
 //need to import in service
 import { ServiceTestService } from '../service-test.service';
 import { Observable, Subject } from 'rxjs';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 //this is now in service
 //import { returnWords } from 'objectmethodscormacmchale';
@@ -19,7 +18,6 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 export class SendMessageComponent implements OnInit {
   
   public conversation: string;
-  public formatConversation;
 
   constructor(private hope: ServiceTestService) {
 
@@ -28,12 +26,18 @@ export class SendMessageComponent implements OnInit {
   ngOnInit()
   {
      this.hope.connect()
+     //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
   }
 
   send(message:string)
   {
     this.hope.sendMessage(message);
-    this.conversation = this.hope.conversation; 
+    //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
+    //setTimeout(this.displayData,2000);
+  }
+  displayData(message:string)
+  {
+    console.log(message);
   }
 
 }
