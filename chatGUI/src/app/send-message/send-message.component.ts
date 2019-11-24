@@ -34,10 +34,11 @@ export class SendMessageComponent implements OnInit {
     this.hope.sendMessage(message);
     //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
     //setTimeout(this.displayData,2000);
+    this.displayData("hello")
   }
   displayData(message:string)
   {
-    console.log(message);
+    this.conversation = this.hope.conversation;
   }
 
 }
