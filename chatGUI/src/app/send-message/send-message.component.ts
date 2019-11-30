@@ -16,21 +16,19 @@ export class SendMessageComponent implements OnInit {
   private conversation: string[] = [];
   private webSocketEndPoint: string = 'ws://127.0.0.1:50000/appComms';
 
+  //subscribe to the observable to recieve the observer
   private chatServer:Subscription;
   
-  constructor(private ws: ServiceTestService) {
-
-  }
-
+  constructor(private ws: ServiceTestService){}
   ngOnInit()
   {
-    this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe(
-      data => this.conversation.push(data)
+    this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe
+    (
+      (data) => this.conversation.push(data)
     )
   }
   send(message:string)
   {
     this.ws.sendMessage(message);
   }
-
 }
