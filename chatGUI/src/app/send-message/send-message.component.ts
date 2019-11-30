@@ -6,6 +6,7 @@ import {test} from 'cormacmchaleaddnumber/lib';
 //need to import in service
 import { ServiceTestService } from '../service-test.service';
 import { Observable, Subject } from 'rxjs';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 //this is now in service
 //import { returnWords } from 'objectmethodscormacmchale';
@@ -17,28 +18,25 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SendMessageComponent implements OnInit {
   
-  public conversation: string;
+  //variable required for connection
+  private conversation: string[] = [];
+  private webSocketEndPoint: string = 'ws://127.0.0.1:50000/appComms';
 
-  constructor(private hope: ServiceTestService) {
+  private chatServer:Subscription;
+  
+  constructor(private ws: ServiceTestService) {
 
   }
 
   ngOnInit()
   {
-     this.hope.connect()
-     //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
+    this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe(
+      data => this.conversation.push(data)
+    )
   }
-
   send(message:string)
   {
-    this.hope.sendMessage(message);
-    //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
-    //setTimeout(this.displayData,2000);
-    this.displayData("hello")
-  }
-  displayData(message:string)
-  {
-    this.conversation = this.hope.conversation;
+    this.ws.sendMessage(message);
   }
 
 }

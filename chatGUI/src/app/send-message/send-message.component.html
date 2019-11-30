@@ -1,5 +1,9 @@
 <br>
-<p>{{conversation}}</p>
+<ul>
+    <li *ngFor="let message of conversation">
+      {{ message }}
+    </li>
+  </ul>
 <input type="text" 
          [(ngModel)]="message"
          style="text-align:center"
