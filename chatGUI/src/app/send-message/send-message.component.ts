@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {test} from 'cormacmchaleaddnumber/lib';
-  //JavaScript Package testing
-  //import{letterCount}from'lettercountcormacmchale';
-  //declare var letterCount:any;
 //need to import in service
+//this is simulating the ws for now
 import { ServiceTestService } from '../service-test.service';
 import { Observable, Subject } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
-
-//this is now in service
-//import { returnWords } from 'objectmethodscormacmchale';
 
 @Component({
   selector: 'app-send-message',
