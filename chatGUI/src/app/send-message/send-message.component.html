@@ -1,9 +1,6 @@
-<p>
-  send-message works!
-</p>
 <br>
-<h1>where my input at?</h1>
+<p>{{conversation}}</p>
 <input type="text" 
          [(ngModel)]="message"
-         style="text-align:center"/>
-<button (click)="send(message)">Add User</button>
+         style="text-align:center"
+         (keydown.enter)="send(message)"/>

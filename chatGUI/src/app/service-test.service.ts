@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { returnWords } from 'objectmethodscormacmchale';
 import { httpserviceprovider } from 'newestsecondhttppackage';
 import { HttpHandler } from 'injectablepackageobjectagain/lib';
-import * as SockJS from 'sockjs-client';
-import { print } from 'util';
+import * as Rx from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { NodeLogger } from '@angular/core/src/view';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
@@ -14,63 +17,31 @@ export class ServiceTestService {
   constructor(private testOne:HttpHandler, private test:httpserviceprovider) { }
 
   hype:returnWords = new returnWords("hope")
-
-  //create client here
-  webSocketEndPoint: string = 'ws://10.0.2.15:8080/mywebserver';
-  topic: string = "/topic/greetings";
   
-  connect() 
+  //this is the message event object
+  //private subject: Rx.Subject<MessageEvent>
+  public ws: WebSocket;
+  //create client here
+  public conversation:string = "";
+  private s:string;
+  public webSocketEndPoint: string = 'ws://127.0.0.1:50000/name';
+  public connect() //Rx.Subject<MessageEvent> 
   {
-      console.log("Initialize WebSocket Connection");
-      var socket = new WebSocket(this.webSocketEndPoint);
-      socket.onopen = function(event)
-      {
-       print("Connected");
-      };
-      socket.onerror = function(error) {
-        console.log('My app ' + error.type);
-      };
-  };
-
-   connectToWebsocket()
-   {
-      this.connect();
-   }
-   sendMessage()   
-   {
-     
-   }
-
-
-
-
-
-
-
-
-
-
-
-
-  sendWords()
-  {
-    return this.hype.gethello()+"\n"+this.hype.getGoodbye()+"\n"+this.hype.getSuccess();  
+    this.ws = new WebSocket(this.webSocketEndPoint);
+    this.ws.addEventListener("open", (event: Event) => {
+      console.log("Connection");
+    });
+    this.ws.addEventListener("message", (event: MessageEvent) => {
+       this.addData(event.data);
+    });
   }
-  makeRequest(info:string)
+  sendMessage(message:string)
   {
-    this.test.testRequest(info);
+    this.ws.send(message);
   }
-  makeOtherRequest(name:string)
+  addData(data:string)
   {
-    this.test.makeRequest(name);
-  }
-  sendthisInfo(method:string,url:string,info:string)
-  {
-    this.test.sendPost(method,url,info)
-  }
-  makeNewestRequest()
-  {
-    this.testOne.testRequest("hello");
+    this.conversation += data;
   }
 
 }

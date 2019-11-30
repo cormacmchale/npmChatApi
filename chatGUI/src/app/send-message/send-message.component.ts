@@ -5,6 +5,7 @@ import {test} from 'cormacmchaleaddnumber/lib';
   //declare var letterCount:any;
 //need to import in service
 import { ServiceTestService } from '../service-test.service';
+import { Observable, Subject } from 'rxjs';
 
 //this is now in service
 //import { returnWords } from 'objectmethodscormacmchale';
@@ -16,24 +17,28 @@ import { ServiceTestService } from '../service-test.service';
 })
 export class SendMessageComponent implements OnInit {
   
-  constructor(private hope: ServiceTestService) { }
+  public conversation: string;
 
-  //private t:Timeline
-  //x:returnWords
+  constructor(private hope: ServiceTestService) {
+
+  }
 
   ngOnInit()
-  {}
+  {
+     this.hope.connect()
+     //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
+  }
 
   send(message:string)
   {
-        //testing
-        //this.x = new returnWords("fight");
-        //alert(this.hope.sendWords());
-        //this.hope.sendthisInfo("POST","127.0.0.1",message);
-        //this.hope.makeRequest("hello");
-        //the next big thing
-        //this.hope.makeNewestRequest();
-        this.hope.connectToWebsocket();
+    this.hope.sendMessage(message);
+    //var update_loop = setInterval(function(){this.displayData(this.hope.conversation),1000});
+    //setTimeout(this.displayData,2000);
+    this.displayData("hello")
+  }
+  displayData(message:string)
+  {
+    this.conversation = this.hope.conversation;
   }
 
 }
