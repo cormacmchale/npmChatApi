@@ -24,6 +24,7 @@ export class SendMessageComponent implements OnInit {
   constructor(private ws: ServiceTestService){}
   ngOnInit()
   {
+    console.log(this.ws.myId);
     this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe
     (
       (data) => this.conversation.push(data),
@@ -33,7 +34,7 @@ export class SendMessageComponent implements OnInit {
   }
   sendMessage(message:string)
   {
-    this.ws.sendMessage(message);
+    //this.ws.sendMessage(message);
   }
 
 }

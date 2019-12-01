@@ -10,7 +10,7 @@ export class ServiceTestService {
   //the actual web socket
   private ws:WebSocket;
   private socketIsOpen = 1;
-  private myId = uuid.v4();
+  public myId = uuid.v1()
   constructor()
   {
 
