@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import { Observable } from 'rxjs/internal/Observable';
+import * as uuid from 'uuid';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,12 +10,13 @@ export class ServiceTestService {
   //the actual web socket
   private ws:WebSocket;
   private socketIsOpen = 1;
+  private myId = uuid.v4();
   constructor()
   {
 
   }
-   public createConnection(url:string): Observable<any>//Rx.Subject<MessageEvent> 
-   {
+  public createConnection(url:string): Observable<any>//Rx.Subject<MessageEvent> 
+  {
      this.ws = new WebSocket(url)
      return new Observable
                 (
@@ -29,6 +32,13 @@ export class ServiceTestService {
    }
    sendMessage(message:string)
    {
-     this.ws.send(message);
+     if(this.ws.readyState===this.socketIsOpen)
+     {
+        this.ws.send(message);
+     }
+     else
+     {
+       return null;
+     }
    }
 }

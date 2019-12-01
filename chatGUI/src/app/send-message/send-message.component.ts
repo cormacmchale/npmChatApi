@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceTestService } from '../service-test.service';
 import { Observable, Subject } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { error } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-send-message',
@@ -13,6 +14,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 export class SendMessageComponent implements OnInit {
   
   //variable required for connection
+  //possbile store this on the web server
   private conversation: string[] = [];
   private webSocketEndPoint: string = 'ws://127.0.0.1:50000/appComms';
 
@@ -24,11 +26,14 @@ export class SendMessageComponent implements OnInit {
   {
     this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe
     (
-      (data) => this.conversation.push(data)
+      (data) => this.conversation.push(data),
+      (error) => console.log(error),
+      ()=> console.log("observer completed")
     )
   }
-  send(message:string)
+  sendMessage(message:string)
   {
     this.ws.sendMessage(message);
   }
+
 }
