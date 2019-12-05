@@ -28,7 +28,6 @@ export class SendMessageComponent implements OnInit {
   }
   sendMessage(message:string)
   {
-    console.log("hello")
     this.ws.sendMessage(message);
   }
 }
