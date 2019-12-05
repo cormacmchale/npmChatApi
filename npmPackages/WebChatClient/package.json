@@ -1,0 +1,19 @@
+{
+  "name": "webchatclient",
+  "version": "1.0.0",
+  "description": "a web chat service ",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build" : "tsc"
+  },
+  "keywords": ["chatclient","webchat"],
+  "author": "cormacmchale",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "rxjs": "^6.5.3"
+  }
+}

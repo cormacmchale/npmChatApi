@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
 import { Observable } from 'rxjs/internal/Observable';
-import * as uuid from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,6 @@ export class ServiceTestService {
   //the actual web socket
   private ws:WebSocket;
   private socketIsOpen = 1;
-  public myId = uuid.v1()
   constructor()
   {
 

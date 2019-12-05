@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { DisplayMessageComponent } from './display-message/display-message.component';
 import { ServiceTestService } from './service-test.service';
+import { WebChatConnection } from 'webchatclient';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ServiceTestService } from './service-test.service';
       {path:'recieve', component: DisplayMessageComponent}
     ])
   ],
-  providers: [ServiceTestService],
+  providers: [ServiceTestService, WebChatConnection],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
