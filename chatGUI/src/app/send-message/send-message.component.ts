@@ -13,9 +13,10 @@ export class SendMessageComponent implements OnInit {
   private conversation: string[] = [];
   //subscribe to the observable to recieve the observer
   private messageservice: Subscription;
+
   constructor(private ws: WebChatConnection)
   {
-    this.ws.createConnection(WEBSERVERLOCATION);
+    //this.ws.createConnection(WEBSERVERLOCATION);
   }
   ngOnInit()
   {
