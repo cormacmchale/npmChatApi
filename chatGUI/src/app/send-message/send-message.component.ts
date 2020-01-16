@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//need to import in service
-//this is simulating the ws for now
-import { ServiceTestService } from '../service-test.service';
-import { Observable, Subject } from 'rxjs';
-import { Subscription } from 'rxjs/internal/Subscription';
-import { error } from 'selenium-webdriver';
+import { Observable } from 'rxjs';
+import { WebChatConnection, WEBSERVERLOCATION} from 'webchatclient';
+import { Subscription } from 'webchatclient/node_modules/rxjs/internal/Subscription';
 
 @Component({
   selector: 'app-send-message',
@@ -12,20 +9,18 @@ import { error } from 'selenium-webdriver';
   styleUrls: ['./send-message.component.css']
 })
 export class SendMessageComponent implements OnInit {
-  
-  //variable required for connection
   //possbile store this on the web server
   private conversation: string[] = [];
-  private webSocketEndPoint: string = 'ws://127.0.0.1:50000/appComms';
-
   //subscribe to the observable to recieve the observer
-  private chatServer:Subscription;
-  
-  constructor(private ws: ServiceTestService){}
+  private messageservice: Subscription;
+
+  constructor(private ws: WebChatConnection)
+  {
+    //this.ws.createConnection(WEBSERVERLOCATION);
+  }
   ngOnInit()
   {
-    console.log(this.ws.myId);
-    this.chatServer = this.ws.createConnection(this.webSocketEndPoint).subscribe
+    this.messageservice = this.ws.createConnection(WEBSERVERLOCATION).subscribe
     (
       (data) => this.conversation.push(data),
       (error) => console.log(error),
@@ -34,7 +29,6 @@ export class SendMessageComponent implements OnInit {
   }
   sendMessage(message:string)
   {
-    //this.ws.sendMessage(message);
+    this.ws.sendMessage(message);
   }
-
 }
