@@ -45,6 +45,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//add new connection into the list of active connections
+		System.out.println("New connection");
 		sessions.add(session);
 		//just for testing visually on console
 		//System.out.println(sessions.size());
