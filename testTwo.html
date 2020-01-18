@@ -13,7 +13,7 @@
 <h1>Type into the text box and view console to chat</h1>
 
 Message: <input type="text" id="chat"></input>
-<button onClick="sendMessage()">Send</button>
+<button onClick="sendMessage()">Send Message</button>
 <br>
 <br>
 <button onClick="close()">Close connection</button>
@@ -24,7 +24,7 @@ var ws;
 function connect() 
 {
     	console.log("in function");
-	ws = new WebSocket('ws://127.0.0.1:50000/appComms','12345');
+	ws = new WebSocket('ws://127.0.0.1:50000/appComms','hype5');
 	//web socket utils
 	ws.onmessage = function(data)
 	{
