@@ -56,6 +56,8 @@ public class SocketHandler extends TextWebSocketHandler {
 		//add the session with the identifier
 		//add session to correct list here
 		//perform validation?? will see for project
+		System.out.println(session.getAcceptedProtocol());
+		System.out.println(session.getHandshakeHeaders().getAccessControlAllowHeaders());
 		SessionMonitor.addSession(session);
 	}
 }

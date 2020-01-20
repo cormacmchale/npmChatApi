@@ -1,5 +1,6 @@
 package project.cormac.chatserverproject;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ public class CustomHandShakeHandler implements HandshakeInterceptor{
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
 		// TODO Auto-generated method stub
+		//System.out.println(request.getHeaders());
 		if(request.getHeaders().getOrEmpty("sec-websocket-protocol")!=null)
 		{
-			System.out.println(request.getHeaders().getOrEmpty("sec-websocket-protocol"));
+			//response.flush();
 			response.setStatusCode(HttpStatus.ACCEPTED);
+			//response.getHeaders().add("sec-websocket-protocol", "accepted");
 			return true;
 		}
 		return true;
@@ -26,6 +29,7 @@ public class CustomHandShakeHandler implements HandshakeInterceptor{
 	@Override
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Exception exception) {
+		System.out.println(exception.getMessage()+"error message");
 		// TODO Auto-generated method stub
 		
 	}
