@@ -1,7 +1,11 @@
 package project.cormac.chatserverproject;
 
+import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 
 public class SessionDatabase {
 
@@ -15,41 +19,48 @@ public class SessionDatabase {
 	}
 	
 	//this will handle all of the sessions
-	private ConcurrentHashMap<String, CopyOnWriteArrayList<ExtendedSession>> sessionMap = new ConcurrentHashMap<String, CopyOnWriteArrayList<ExtendedSession>>();
+	private ConcurrentHashMap<String, CopyOnWriteArrayList<WebSocketSession>> sessionMap = new ConcurrentHashMap<String, CopyOnWriteArrayList<WebSocketSession>>();
 	//adding a session based on the initial sent message
-	public void addSession(ExtendedSession addThis)
+	public void addSession(WebSocketSession addThis)
 	{
-		if(sessionMap.containsKey(addThis.getIdentifier()))
+		if(sessionMap.containsKey(addThis.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString()))
 		{
 			//session added correctly
-			CopyOnWriteArrayList<ExtendedSession> tempAdd = sessionMap.get(addThis.getIdentifier());
+			CopyOnWriteArrayList<WebSocketSession> tempAdd = sessionMap.get(addThis.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString());
 			tempAdd.add(addThis);
 		}
 		else
 		{
-			CopyOnWriteArrayList<ExtendedSession> newSession = new CopyOnWriteArrayList<ExtendedSession>();
+			CopyOnWriteArrayList<WebSocketSession> newSession = new CopyOnWriteArrayList<WebSocketSession>();
 			newSession.add(addThis);
-			sessionMap.put(addThis.getIdentifier(), newSession);
+			sessionMap.put(addThis.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString(), newSession);
 		}
 	}
 	
-	public void removeSession(ExtendedSession removeThis)
+	public void removeSession(WebSocketSession removeThis)
 	{
 		//the session and the list will always be there
-		CopyOnWriteArrayList<ExtendedSession> tempRemoval = sessionMap.get(removeThis.getIdentifier());
-		for(ExtendedSession webSocketSession : tempRemoval)
+		CopyOnWriteArrayList<WebSocketSession> tempRemoval = sessionMap.get(removeThis.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString());
+		for(WebSocketSession webSocketSession : tempRemoval)
 		{
 			//remove from the session
 			if(removeThis == webSocketSession)
 			{
+				System.out.println("session sucessfully removed");
 				tempRemoval.remove(removeThis);
 			}
 		}
 	}
-	//return the relevant list
-	public CopyOnWriteArrayList<ExtendedSession> getSessions(String id)
-	{
-		return sessionMap.get(id);	
-	}
 	
+	
+	public void sendMessage(String id, TextMessage message) throws IOException
+	{
+		//the session and the list will always be there
+		CopyOnWriteArrayList<WebSocketSession> tempRemoval = sessionMap.get(id);
+		for(WebSocketSession webSocketSession : tempRemoval)
+		{
+			webSocketSession.sendMessage(message);
+		}
+	}
+		
 }
