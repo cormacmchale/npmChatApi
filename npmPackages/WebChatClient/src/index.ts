@@ -19,7 +19,6 @@ export class WebChatConnection {
                     }
                   )
      }
-
      sendMessage(message:string)
      {
        if(this.ws.readyState===this.socketIsOpen)
