@@ -51,6 +51,7 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//add new connection into the list of active connections
 		System.out.println("New connection");
+	
 		//sessions.add(session);
 		//add the session with the identifier
 		//add session to correct list here
