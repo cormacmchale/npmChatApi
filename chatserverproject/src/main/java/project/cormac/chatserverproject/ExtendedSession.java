@@ -3,6 +3,7 @@ package project.cormac.chatserverproject;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.WebSocketSessionDecorator;
 
+//unused at the moment
 public class ExtendedSession extends WebSocketSessionDecorator{
 
 	private String identifier;

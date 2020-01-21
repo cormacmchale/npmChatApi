@@ -1,7 +1,9 @@
 package project.cormac.chatserverproject;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.ServerHttpRequest;
@@ -16,13 +18,23 @@ public class CustomHandShakeHandler implements HandshakeInterceptor{
 			Map<String, Object> attributes) throws Exception {
 		// TODO Auto-generated method stub
 		//System.out.println(request.getHeaders());
-		if(request.getHeaders().getOrEmpty("sec-websocket-protocol")!=null)
-		{
+		//Set<String> checkThis = attributes.keySet();
+		
+		//System.out.println(checkThis.size());
+		
+		
+		//if(request.getHeaders().getOrEmpty("sec-websocket-protocol")!=null)
+		//{
 			//response.flush();
-			response.setStatusCode(HttpStatus.ACCEPTED);
+		//	response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
 			//response.getHeaders().add("sec-websocket-protocol", "accepted");
-			return true;
-		}
+			//return true;
+		//}
+		//might this work
+		String addResponse = request.getHeaders().getOrEmpty("sec-websocket-protocol").toString();
+		addResponse = addResponse.subSequence(1, addResponse.length()-1).toString();
+		System.out.println(addResponse);		
+		response.getHeaders().add("Sec-Websocket-Protocol", addResponse);
 		return true;
 	}
 
@@ -33,7 +45,5 @@ public class CustomHandShakeHandler implements HandshakeInterceptor{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }

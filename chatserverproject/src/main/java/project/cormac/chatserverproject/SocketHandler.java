@@ -50,14 +50,15 @@ public class SocketHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//add new connection into the list of active connections
-		System.out.println("New connection");
+		//System.out.println("New connection");
 	
 		//sessions.add(session);
 		//add the session with the identifier
 		//add session to correct list here
 		//perform validation?? will see for project
-		System.out.println(session.getAcceptedProtocol());
-		System.out.println(session.getHandshakeHeaders().getAccessControlAllowHeaders());
+		//System.out.println(session.getAcceptedProtocol());
+		//System.out.println(session.getHandshakeHeaders().getAccessControlAllowHeaders());
 		SessionMonitor.addSession(session);
 	}
+
 }
