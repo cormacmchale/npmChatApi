@@ -12,4 +12,4 @@ def generatePassword():
     return jsonify(int(2))
 #start the web app in debug mode
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
