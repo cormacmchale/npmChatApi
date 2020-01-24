@@ -11,3 +11,17 @@ function generateRandomNumber() {
             }
         });
     }
+function passwordValidationTesting()
+{
+    var check = document.getElementById("validationTest").value
+    $.ajax({
+        type: "POST",
+        url: "/checkPassword",
+        contentType: 'application/json;charset=UTF-8',
+        data: JSON.stringify({'password': check }),
+        success: function (result) {
+            //change result on webpage to prediction
+            console.log(result)
+        }
+    });
+}

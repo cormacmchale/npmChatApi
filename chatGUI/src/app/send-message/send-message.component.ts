@@ -15,7 +15,7 @@ export class SendMessageComponent implements OnInit {
   private messageservice: Subscription;
   constructor(private ws: WebChatConnection)
   {
-    //this.ws.createConnection(WEBSERVERLOCATION);
+    this.ws.createConnection(WEBSERVERLOCATION);
   }
   ngOnInit()
   {
@@ -25,9 +25,12 @@ export class SendMessageComponent implements OnInit {
       (error) => console.log(error),
       ()=> console.log("observer completed")
     )
+
   }
   sendMessage(message:string)
   {
     this.ws.sendMessage(message);
+    console.log(message);
   }
 }
+
