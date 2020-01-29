@@ -26,8 +26,9 @@ def generatePassword():
 #loop back to here with password
 @app.route("/checkPassword", methods=['POST'])
 def validatePassword():
-    check = request.json['password']
+    #check = request.json['password']
     #load in passwords
+    check = request.data
     passwordFile = open("notPasswords.txt","r")
     #loop through file
     for i in passwordFile.readlines():
@@ -37,10 +38,10 @@ def validatePassword():
         if(i.strip() == check.strip()):
             #close file and send response
             passwordFile.close()
-            return jsonify("password validation passed")
+            return jsonify("passed")
     #if not found, close file different response
     passwordFile.close()
-    return jsonify("password validation failed")
+    return jsonify("failed")
 
 #don't start the app in debug mode
 #possibly what was wrong

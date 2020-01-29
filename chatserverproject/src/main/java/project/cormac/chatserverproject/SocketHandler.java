@@ -13,6 +13,9 @@ public class SocketHandler extends TextWebSocketHandler {
 	//get a handle on the database
 	SessionDatabase SessionMonitor = SessionDatabase.getInstance();
 	
+	//password validator
+	passwordValidator httpValidation = new passwordValidator();
+	
 	//over write this to handle the message that comes from a connection
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws InterruptedException, IOException 
@@ -49,16 +52,22 @@ public class SocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		//add new connection into the list of active connections
-		//System.out.println("New connection");
 	
-		//sessions.add(session);
-		//add the session with the identifier
-		//add session to correct list here
-		//perform validation?? will see for project
-		//System.out.println(session.getAcceptedProtocol());
-		//System.out.println(session.getHandshakeHeaders().getAccessControlAllowHeaders());
-		SessionMonitor.addSession(session);
+		String addResponse = session.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString();
+		addResponse = addResponse.subSequence(1, addResponse.length()-1).toString();	
+		//if the password is on the server
+		if(httpValidation.sendPost(addResponse))
+		{
+			//make post request to python server 
+			SessionMonitor.addSession(session);			
+		}
+		else
+		{
+			//don't allow access to chat server
+			//session.close();
+			System.out.println("no connection");
+		}
+		
 	}
 
 }
