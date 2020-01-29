@@ -2,7 +2,6 @@
 from flask import Flask, render_template, json, request, jsonify
 import random
 import numpy as np
-import sys
 #initialize app
 app=Flask(__name__)
 #base url
@@ -33,7 +32,7 @@ def validatePassword():
     #loop through file
     for i in passwordFile.readlines():
         #debug
-        print("Check "+i.strip()+" against "+check.strip(), file=sys.stderr)
+        print("Check "+i.strip()+" against "+check.strip())
         #if found
         if(i.strip() == check.strip()):
             #close file and send response
