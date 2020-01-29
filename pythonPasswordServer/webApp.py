@@ -46,4 +46,4 @@ def validatePassword():
 #don't start the app in debug mode
 #possibly what was wrong
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
