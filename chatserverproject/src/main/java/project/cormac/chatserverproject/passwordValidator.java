@@ -9,6 +9,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+
 public class passwordValidator {
 
 	// one instance, reuse
@@ -27,10 +29,8 @@ public class passwordValidator {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        //parse out the answer for validation
-		String answer = response.body().toString().subSequence(1, response.body().toString().length()-2).toString();
-		//System.out.println(answer);
-        if(answer.equalsIgnoreCase("passed"))
+        //if password validation passes
+        if(response.statusCode()== 200)
         {
         	return true;
         }

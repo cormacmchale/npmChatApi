@@ -7,4 +7,5 @@ RUN pip install numpy==1.16.5
 COPY webApp.py ./
 COPY /templates ./templates
 COPY /static ./static
+COPY notPasswords.txt ./
 CMD ["python","webApp.py"]

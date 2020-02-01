@@ -7,11 +7,7 @@ app=Flask(__name__)
 #base url
 @app.route("/")
 def UI():
-    #p = "PATH_TO_INPUT_FILE"
-    #data = []
-    #with open(p,"r") as f:
-    #for i in f.readlines():
-    #    data.append(ast.literal_eval(i.strip()))
+    #show the user the password generator
     return render_template("passwordGenerator.html")
 @app.route("/generatePassword")
 def generatePassword():
@@ -21,27 +17,21 @@ def generatePassword():
     passwordFile.write(password+"\n")
     passwordFile.close()
     return jsonify(password)
-#don't start the app in debug mode
-#for the java server to validate
-#loop back to here with password
 @app.route("/checkPassword", methods=['POST'])
 def validatePassword():
-    #check = request.json['password']
     #load in passwords
     check = request.data
     passwordFile = open("notPasswords.txt","r")
     #loop through file
     for i in passwordFile.readlines():
-        #debug
-        print("Check "+i.strip()+" against "+check.strip())
-        #if found
+        #compare to passwords in file
         if(i.strip() == check.strip()):
             #close file and send response
             passwordFile.close()
-            return jsonify("passed")
+            return 'validation passed', 200
     #if not found, close file different response
     passwordFile.close()
-    return jsonify("failed")
+    return 'validation failed', 404
 
 #don't start the app in debug mode
 #possibly what was wrong
