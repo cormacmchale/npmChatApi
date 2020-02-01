@@ -11,18 +11,21 @@ public class CustomHandShakeHandler implements HandshakeInterceptor{
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
-		// TODO Auto-generated method stub
+
+		//possibly do this differently?
 		String addResponse = request.getHeaders().getOrEmpty("sec-websocket-protocol").toString();
 		addResponse = addResponse.subSequence(1, addResponse.length()-1).toString();
-		System.out.println(addResponse);	
+		
+		//add a response to keep chrome happy
 		response.getHeaders().add("Sec-Websocket-Protocol", addResponse);
+		
 		return true;
 	}
 
 	@Override
 	public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Exception exception) {
-		System.out.println(exception.getMessage()+"error message");
+		//System.out.println(exception.getMessage()+"error message");
 		// TODO Auto-generated method stub
 		
 	}

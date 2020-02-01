@@ -41,6 +41,11 @@ public class SessionDatabase {
 	{
 		//the session and the list will always be there
 		CopyOnWriteArrayList<WebSocketSession> tempRemoval = sessionMap.get(removeThis.getHandshakeHeaders().getOrEmpty("sec-websocket-protocol").toString());
+		//invalid login - session doesn't exist
+		if(tempRemoval==null)
+		{
+			return;
+		}
 		for(WebSocketSession webSocketSession : tempRemoval)
 		{
 			//remove from the session
@@ -48,6 +53,7 @@ public class SessionDatabase {
 			{
 				System.out.println("session sucessfully removed");
 				tempRemoval.remove(removeThis);
+				return;
 			}
 		}
 	}

@@ -27,11 +27,11 @@ public class passwordValidator {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        //parse out the answer for validation
 		String answer = response.body().toString().subSequence(1, response.body().toString().length()-2).toString();
-		System.out.println(answer);
+		//System.out.println(answer);
         if(answer.equalsIgnoreCase("passed"))
         {
-        	System.out.println("passed");
         	return true;
         }
         else
