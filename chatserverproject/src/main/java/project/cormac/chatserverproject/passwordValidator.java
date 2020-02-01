@@ -21,14 +21,16 @@ public class passwordValidator {
     
     public boolean sendPost(String password) throws Exception {
 
-
+        System.out.println("trying to form request");
+        
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(password))
-                .uri(URI.create("http://0.0.0.0:5000/checkPassword"))// add request header
+                .uri(URI.create("http://46.101.229.154:5000/checkPassword"))// add request header
                 .header("Content-Type", "application/json")
                 .build();
-
+        
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println("recieved response");
         //if password validation passes
         if(response.statusCode()== 200)
         {
@@ -38,7 +40,6 @@ public class passwordValidator {
         {
         	return false;
         }
-
     }
 
 }
