@@ -22,12 +22,12 @@ public class passwordValidator {
     public boolean sendPost(String password) throws Exception {
 
     	String url = "http://46.101.229.154:5000/checkPassword";
-        System.out.println("trying to form request to"+url);
-        
+        System.out.println("trying to form request to "+url);
+        System.out.println(password);
         HttpRequest request = HttpRequest.newBuilder()
                 .POST(HttpRequest.BodyPublishers.ofString(password))
-                .uri(URI.create("http://172.17.0.1:5000/checkPassword"))// add request header
-                .header("Content-Type", "application/json")
+                .uri(URI.create(url))// add request header
+                .header("Accept", "application/json")
                 .build();
         
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -21,6 +21,7 @@ def generatePassword():
 def validatePassword():
     #load in passwords
     check = request.data
+    print(check)
     passwordFile = open("notPasswords.txt","r")
     #loop through file
     for i in passwordFile.readlines():
