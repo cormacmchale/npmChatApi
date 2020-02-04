@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { DisplayMessageComponent } from './display-message/display-message.component';
 import { ServiceTestService } from './service-test.service';
-import { WebChatConnection } from 'webchatclient';
+import { WebChatConnection } from 'finalwebchatclient';
 
 @NgModule({
   declarations: [

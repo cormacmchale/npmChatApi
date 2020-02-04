@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { WebChatConnection, WEBSERVERLOCATION} from 'webchatclient';
-import { Subscription } from 'webchatclient/node_modules/rxjs/internal/Subscription';
+import {Observable, Subscription} from 'rxjs';
+import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatclient';
 
 @Component({
   selector: 'app-send-message',
@@ -9,28 +8,20 @@ import { Subscription } from 'webchatclient/node_modules/rxjs/internal/Subscript
   styleUrls: ['./send-message.component.css']
 })
 export class SendMessageComponent implements OnInit {
-  //possbile store this on the web server
-  private conversation: string[] = [];
-  //subscribe to the observable to recieve the observer
-  private messageservice: Subscription;
-  constructor(private ws: WebChatConnection)
-  {
-    this.ws.createConnection(WEBSERVERLOCATION);
-  }
-  ngOnInit()
-  {
-    this.messageservice = this.ws.createConnection(WEBSERVERLOCATION).subscribe
-    (
-      (data) => this.conversation.push(data),
-      (error) => console.log(error),
-      ()=> console.log("observer completed")
-    )
 
+  public conversation = CONVERSATION;
+
+  constructor(private ws:WebChatConnection)
+  {
+     this.ws.chatServer_init(WEBSERVERLOCATION,'1aDPnW3SZY2KgM5hAciR0');
+     CONVERSATION
   }
+  //not needed
+  ngOnInit(){}
   sendMessage(message:string)
   {
-    this.ws.sendMessage(message);
-    console.log(message);
+   console.log(message);
+   this.ws.sendMessage(message);
   }
 }
 
