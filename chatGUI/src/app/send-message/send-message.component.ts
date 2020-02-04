@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatclient';
+import { ServiceTestService } from '../service-test.service';
 
 @Component({
   selector: 'app-send-message',
@@ -9,19 +8,22 @@ import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatcl
 })
 export class SendMessageComponent implements OnInit {
 
-  public conversation = CONVERSATION;
-
-  constructor(private ws:WebChatConnection)
+  public conversation
+  constructor(private ws:ServiceTestService)
   {
-     this.ws.chatServer_init(WEBSERVERLOCATION,'1aDPnW3SZY2KgM5hAciR0');
-     CONVERSATION
+     this.conversation = ws.conversation
   }
   //not needed
   ngOnInit(){}
   sendMessage(message:string)
   {
-   console.log(message);
-   this.ws.sendMessage(message);
+    this.ws.sendMessage(this.ws.name+": "+message);
+    
+  }
+  setName(name:string)
+  {
+     this.ws.setName(name)
+     alert("Name changed to "+name)
   }
 }
 

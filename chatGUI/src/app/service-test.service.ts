@@ -1,42 +1,22 @@
 import { Injectable } from '@angular/core';
-import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
-import { Observable } from 'rxjs/internal/Observable';
+import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatclient';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiceTestService {
-  //the actual web socket
-  private ws:WebSocket;
-  private socketIsOpen = 1;
-  constructor()
+  public name:string = "anon"
+  public conversation = CONVERSATION;
+  constructor(private ws:WebChatConnection)
   {
-
+    this.ws.chatServer_init(WEBSERVERLOCATION,'1aDPnW3SZY2KgM5hAciR0');
   }
-  public createConnection(url:string): Observable<any>//Rx.Subject<MessageEvent> 
+  sendMessage(message:string)
   {
-     this.ws = new WebSocket(url)
-     return new Observable
-                (
-                  observer =>
-                  {
-                    //return a new observable
-                    this.ws.onmessage =  (event) => observer.next(event.data)
-                    this.ws.onerror = (event) => observer.next(event)
-                    this.ws.onclose = (event) => observer.complete()
-                    return () => this.ws.close(404, "The User Disconnected")
-                  }
-                )
-   }
-   sendMessage(message:string)
-   {
-     if(this.ws.readyState===this.socketIsOpen)
-     {
-        this.ws.send(message);
-     }
-     else
-     {
-       return null;
-     }
-   }
+   this.ws.sendMessage(message);
+  }
+  setName(name:string)
+  {
+    this.name=name
+  }
 }

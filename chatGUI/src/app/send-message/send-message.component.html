@@ -1,10 +1,20 @@
+
+<br>
+Set Alias to chat:
+<input type="text" 
+         [(ngModel)]="name"
+         (keydown.enter)="setName(name)"/>
+<br>
 <br>
 <ul>
-    <li *ngFor="let message of conversation">
-      {{ message }}
+    <li *ngFor="let clientMessage of conversation">
+        <mat-card>
+          {{ clientMessage }}
+        </mat-card>
+        <br>
     </li>
-  </ul>
-<input type="text" 
+</ul>
+Type here to chat ===><input type="text" 
          [(ngModel)]="message"
          style="text-align:center"
          (keydown.enter)="sendMessage(message)"/>
