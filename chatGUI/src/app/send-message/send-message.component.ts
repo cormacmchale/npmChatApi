@@ -9,6 +9,8 @@ import { ServiceTestService } from '../service-test.service';
 export class SendMessageComponent implements OnInit {
 
   public conversation
+  public message
+  public name
   constructor(private ws:ServiceTestService)
   {
      this.conversation = ws.conversation
@@ -17,9 +19,7 @@ export class SendMessageComponent implements OnInit {
   ngOnInit(){}
   sendMessage(message:string)
   {
-    this.ws.sendMessage(this.ws.name+": "+message)
-    message=""
-    
+    this.ws.sendMessage(this.ws.name+": "+message)    
   }
   setName(name:string)
   {
