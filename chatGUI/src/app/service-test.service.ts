@@ -9,7 +9,7 @@ export class ServiceTestService {
   public conversation = CONVERSATION;
   constructor(private ws:WebChatConnection)
   {
-    this.ws.chatServer_init(WEBSERVERLOCATION,'1aDPnW3SZY2KgM5hAciR0');
+    this.ws.chatServer_init(WEBSERVERLOCATION,'KpQj6gRdeD0E');
   }
   sendMessage(message:string)
   {

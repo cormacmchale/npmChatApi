@@ -17,7 +17,8 @@ export class SendMessageComponent implements OnInit {
   ngOnInit(){}
   sendMessage(message:string)
   {
-    this.ws.sendMessage(this.ws.name+": "+message);
+    this.ws.sendMessage(this.ws.name+": "+message)
+    message=""
     
   }
   setName(name:string)
