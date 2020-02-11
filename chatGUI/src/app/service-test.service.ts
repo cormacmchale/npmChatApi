@@ -5,11 +5,11 @@ import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatcl
   providedIn: 'root'
 })
 export class ServiceTestService {
-  public name:string = "anon"
+  public name
   public conversation = CONVERSATION;
   constructor(private ws:WebChatConnection)
   {
-    this.ws.chatServer_init(WEBSERVERLOCATION,'KpQj6gRdeD0E');
+    this.ws.chatServer_init(WEBSERVERLOCATION,'GET6rRq1Ls');
   }
   sendMessage(message:string)
   {
@@ -18,5 +18,11 @@ export class ServiceTestService {
   setName(name:string)
   {
     this.name=name
+  }
+
+  //for loading into chat
+  getName():string
+  {
+    return this.name
   }
 }

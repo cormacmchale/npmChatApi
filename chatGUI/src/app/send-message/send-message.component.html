@@ -1,20 +1,31 @@
+<br>
+<div id="chatboxcenter">
+<h1>Welcome to the Chat Room</h1>
+<br>
+<div *ngFor="let clientMessage of conversation">
+    <div id="layoutwrapper">
+        <div class=layout>
+            <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'layoutright':'layoutleft'">
+                <mat-card id="keepsize">
+                    <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'mymainchat':'mainchat'">
+                        <b>
+                            <i>{{clientMessage.substring(0,clientMessage.indexOf(":"))}}</i>
+                        </b>
+                        <br>
+                        <b>===================</b>
+                        <br> 
+                        <mat-card-content>{{ clientMessage.substring(clientMessage.indexOf(":")+1,clientMessage.length) }}</mat-card-content>
+                    </div>
+                </mat-card>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+<br>
 
-<br>
-Set Alias to chat:
-<input type="text" 
-         [(ngModel)]="name"
-         (keydown.enter)="setName(name)"/>
-<br>
-<br>
-<ul>
-    <li *ngFor="let clientMessage of conversation">
-        <mat-card>
-          {{ clientMessage }}
-        </mat-card>
-        <br>
-    </li>
-</ul>
-Type here to chat ===><input type="text" 
-         [(ngModel)]="message"
-         style="text-align:center"
-         (keydown.enter)="sendMessage(message)"/>
+<div id="chatbox">
+    === Chat ===
+    <br>
+    <input type="text" [(ngModel)]="message" (keydown.enter)="sendMessage()" style="width:20%; height:30px; border-radius:10px">
+</div>

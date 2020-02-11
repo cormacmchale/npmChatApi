@@ -1,0 +1,50 @@
+#chatbox
+{
+    text-align: center;
+}
+#chatboxcenter
+{
+    text-align: center;
+    background-image: url("../images/message.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    padding: 5%;
+}
+#layoutwrapper
+{
+    margin-left: 20%;
+    margin-right: 20%;
+
+}
+#keepsize
+{
+    width: 60%;
+    max-width: 60%;
+    border-style: ridge;
+    background-image: url("../images/cardBackground.jpg");
+    background-size: cover;
+}
+.layoutleft
+{
+    display: flex;
+    justify-content: flex-start;
+    flex-basis: 20%;
+    text-align: left;
+    border-right: 5%;
+}
+.layoutright
+{
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    border-left: 5%;
+}
+.mainchat
+{
+    color: black;
+}
+
+.mymainchat
+{
+    color: white;
+}

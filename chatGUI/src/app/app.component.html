@@ -1,8 +1,11 @@
-<!--The content below is only a placeholder and can be replaced.-->
-  <h1>
+<div id="chatbox">
+ <h1>
    Chat Application
   </h1>
   <br>
-  <a routerLink="/send">Send</a>
+  <button (click)="navigateToPage()" style="width:40%; height:50px;">Enter / Set Name</button>
+  <br>
   <router-outlet></router-outlet>
+  <br>
+</div>
  
