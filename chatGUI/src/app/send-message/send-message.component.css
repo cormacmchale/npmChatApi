@@ -5,21 +5,19 @@
 #chatboxcenter
 {
     text-align: center;
-    background-image: url("../images/message.jpg");
-    background-size: cover;
+    background-color: blanchedalmond;
     background-repeat: repeat-y;
     padding: 5%;
 }
 #layoutwrapper
 {
-    margin-left: 20%;
-    margin-right: 20%;
-
+    margin-left: 10%;
+    margin-right: 10%;
 }
 #keepsize
 {
-    width: 60%;
-    max-width: 60%;
+    width: 70%;
+    max-width: 70%;
     border-style: ridge;
     background-image: url("../images/cardBackground.jpg");
     background-size: cover;
@@ -28,16 +26,15 @@
 {
     display: flex;
     justify-content: flex-start;
-    flex-basis: 20%;
     text-align: left;
-    border-right: 5%;
+    border-right: 2%;
 }
 .layoutright
 {
     display: flex;
     justify-content: flex-end;
     text-align: right;
-    border-left: 5%;
+    border-left: 2%;
 }
 .mainchat
 {

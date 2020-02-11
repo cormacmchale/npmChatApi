@@ -8,12 +8,7 @@
             <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'layoutright':'layoutleft'">
                 <mat-card id="keepsize">
                     <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'mymainchat':'mainchat'">
-                        <b>
-                            <i>{{clientMessage.substring(0,clientMessage.indexOf(":"))}}</i>
-                        </b>
-                        <br>
-                        <b>===================</b>
-                        <br> 
+                        <b><h4><i style="text-decoration: underline;"style="text-decoration: underline;">{{clientMessage.substring(0,clientMessage.indexOf(":"))}}</i></h4></b>
                         <mat-card-content>{{ clientMessage.substring(clientMessage.indexOf(":")+1,clientMessage.length) }}</mat-card-content>
                     </div>
                 </mat-card>
