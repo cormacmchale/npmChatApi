@@ -1,5 +1,5 @@
 {
-  "name": "finalwebchatclient",
+  "name": "finalwebchatclientjson",
   "version": "1.0.0",
   "description": "web chat client",
   "main": "lib/index.js",

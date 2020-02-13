@@ -31,9 +31,10 @@ export class SendMessageComponent implements OnInit, AfterViewInit {
   {
     //this.ngAfterViewInit()
     //console.log(this.message)
-    this.ws.sendMessage(this.ws.name+": "+this.message)
+    this.ws.sendMessage(this.ws.name,this.message)
     //clear after you end the input
     this.message = "";
+    console.log(this.conversation)
   }
 
   scrollPage()

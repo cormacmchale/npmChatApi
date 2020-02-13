@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatclient';
+import {WEBSERVERLOCATION, CONVERSATION, WebChatConnection} from 'finalwebchatclientjson';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,11 @@ export class ServiceTestService {
   public conversation = CONVERSATION;
   constructor(private ws:WebChatConnection)
   {
-    this.ws.chatServer_init(WEBSERVERLOCATION,'GET6rRq1Ls');
+    this.ws.chatServer_init(WEBSERVERLOCATION,'In2hazQ5NmfK37ekHL61uDsYS8FgjdlOpJA0');
   }
-  sendMessage(message:string)
+  sendMessage(name:string,message:string)
   {
-   this.ws.sendMessage(message);
+   this.ws.sendMessage(name,message);
   }
   setName(name:string)
   {

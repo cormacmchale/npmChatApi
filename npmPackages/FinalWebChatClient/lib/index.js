@@ -11,7 +11,7 @@ class WebChatConnection {
     }
     //setup the connection
     chatServer_init(url, password) {
-        this.messageService = this.createConnection(url, password).subscribe((data) => exports.CONVERSATION.push(data), (error) => console.log(error), () => console.log("observer completed"));
+        this.messageService = this.createConnection(url, password).subscribe((data) => exports.CONVERSATION.push(JSON.parse(data)), (error) => console.log(error), () => console.log("observer completed"));
     }
     createConnection(url, password) {
         this.ws = new WebSocket(url, password);
@@ -23,9 +23,10 @@ class WebChatConnection {
             return () => this.ws.close(404, "The User Disconnected");
         });
     }
-    sendMessage(message) {
+    sendMessage(user, message) {
+        var send = { user, message };
         if (this.ws.readyState === this.socketIsOpen) {
-            this.ws.send(message);
+            this.ws.send(JSON.stringify(send));
         }
         else {
             return null;

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 //location of server
 export const WEBSERVERLOCATION = 'ws://68.183.240.142:50000/appComms';
 //conversation for processing
-export const CONVERSATION : string[] = [];
+export const CONVERSATION : JSON [ ] = [ ];
 
 export class WebChatConnection {
     //the actual web socket
@@ -16,11 +16,12 @@ export class WebChatConnection {
     {
         this.messageService = this.createConnection(url, password).subscribe
         (
-          (data) => CONVERSATION.push(data),
+          (data) => CONVERSATION.push(JSON.parse(data)),
           (error) => console.log(error),
           ()=> console.log("observer completed")
         )
     }
+
     private createConnection(url:string,password:string): Observable<any>//Rx.Subject<MessageEvent> 
     {
        this.ws = new WebSocket(url,password);
@@ -36,11 +37,14 @@ export class WebChatConnection {
                     }
                   )
      }
-     sendMessage(message:string)
+     sendMessage(user:string ,message:string)
      {
+
+       var send = {user,message};
+
        if(this.ws.readyState===this.socketIsOpen)
        {
-          this.ws.send(message);
+          this.ws.send(JSON.stringify(send));
        }
        else
        {

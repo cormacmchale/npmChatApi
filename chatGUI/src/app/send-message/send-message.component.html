@@ -3,21 +3,9 @@
 <h1>Welcome to the Chat Room</h1>
 <br>
 <div *ngFor="let clientMessage of conversation">
-    <div id="layoutwrapper">
-        <div class=layout>
-            <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'layoutright':'layoutleft'">
-                <mat-card id="keepsize">
-                    <div [ngClass]="clientMessage.substring(0,clientMessage.indexOf(':'))==name ? 'mymainchat':'mainchat'">
-                        <b><h4><i style="text-decoration: underline;"style="text-decoration: underline;">{{clientMessage.substring(0,clientMessage.indexOf(":"))}}</i></h4></b>
-                        <mat-card-content>{{ clientMessage.substring(clientMessage.indexOf(":")+1,clientMessage.length) }}</mat-card-content>
-                    </div>
-                </mat-card>
-            </div>
-            <br>
-        </div>
-    </div>
+{{clientMessage.user + " "+ clientMessage.message}}
 </div>
-<br>
+<br> -->
 
 <div id="chatbox">
     === Chat ===
