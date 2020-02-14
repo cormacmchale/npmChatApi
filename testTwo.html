@@ -24,7 +24,7 @@ var ws;
 function connect() 
 {
     	console.log("in function");
-	ws = new WebSocket('ws://46.101.229.154:50000/appComms','VE018lXfbJn');
+	ws = new WebSocket('ws://127.0.0.1:50000/appComms','VE018lXfbJn');
 	//web socket utils
 	ws.onmessage = function(data)
 	{
