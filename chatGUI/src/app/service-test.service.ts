@@ -19,7 +19,6 @@ export class ServiceTestService {
   {
     this.name=name
   }
-
   //for loading into chat
   getName():string
   {
